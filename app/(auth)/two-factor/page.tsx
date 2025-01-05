@@ -12,14 +12,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { client } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+
+
 
 export default function Component() {
 	const [totpCode, setTotpCode] = useState("");
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState(false);
+
+	const router = useRouter();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -35,6 +40,7 @@ export default function Component() {
 				if (res.data?.session) {
 					setSuccess(true);
 					setError("");
+					router.push("/dashboard");
 				} else {
 					setError("Invalid TOTP code");
 				}
