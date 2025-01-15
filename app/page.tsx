@@ -1,62 +1,69 @@
-import { SignInButton, SignInFallback } from "@/components/sign-in-btn";
-import { Suspense } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowRight, CheckCircle } from "lucide-react";
+import { SignInButton } from "@/components/sign-in-btn";
 
-export default async function Home() {
+export default function Home() {
 	const features = [
-		"Email & Password",
-		"Organization | Teams",
-		"Passkeys",
-		"Multi Factor",
-		"Password Reset",
-		"Email Verification",
-		"Roles & Permissions",
-		"Rate Limiting",
-		"Session Management",
+		"AI-powered job matching",
+		"Smart CV analysis",
+		"Instant job recommendations",
+		"Professional network building",
+		"Career growth insights",
+		"Direct employer connections"
 	];
+
 	return (
-		<div className="min-h-[80vh] flex items-center justify-center overflow-hidden no-visible-scrollbar px-6 md:px-0">
-			<main className="flex flex-col gap-4 row-start-2 items-center justify-center">
-				<div className="flex flex-col gap-1">
-					<h3 className="font-bold text-4xl text-black dark:text-white text-center">
-						Better Auth.
-					</h3>
-					<p className="text-center break-words text-sm md:text-base">
-						Official demo to showcase{" "}
-						<a
-							href="https://better-auth.com"
-							target="_blank"
-							className="italic underline"
-						>
-							better-auth.
-						</a>{" "}
-						features and capabilities. <br />
-					</p>
-				</div>
-				<div className="md:w-10/12 w-full flex flex-col gap-4">
-					<div className="flex flex-col gap-3 pt-2 flex-wrap">
-						<div className="border-y py-2 border-dotted bg-secondary/60 opacity-80">
-							<div className="text-xs flex items-center gap-2 justify-center text-muted-foreground ">
-								<span className="text-center">
-									All features on this demo are Implemented with better auth
-									without any custom backend code
-								</span>
+		<div className="flex flex-col min-h-screen">
+			<main className="flex-1">
+				<section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+					<div className="container px-4 md:px-6">
+						<div className="flex flex-col items-center space-y-4 text-center">
+							<div className="space-y-2">
+								<h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+									Transform Your Career Journey with HIR3D
+								</h1>
+								<p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+									Let AI power your next career move. Upload your CV and get matched with your dream job instantly.
+								</p>
+							</div>
+							<div className="space-x-4 flex justify-center">
+								<Link href="/upload">
+									<Button variant="outline" className="px-8 py-4">
+										Upload CV
+										<ArrowRight className="ml-2 h-4 w-4" />
+									</Button>
+								</Link>
+								<div className="">
+									<SignInButton />
+								</div>
 							</div>
 						</div>
-						<div className="flex gap-2 justify-center flex-wrap">
-							{features.map((feature) => (
-								<span
-									className="border-b pb-1 text-muted-foreground text-xs cursor-pointer hover:text-foreground duration-150 ease-in-out transition-all hover:border-foreground flex items-center gap-1"
-									key={feature}
-								>
-									{feature}.
-								</span>
-							))}
+					</div>
+				</section>
+				
+				<section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+					<div className="container px-4 md:px-6">
+						<div className="grid gap-10 px-4 md:grid-cols-2 md:gap-16">
+							<div>
+								<h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+									Why Choose HIR3D?
+								</h2>
+								<p className="mt-4 text-gray-500 dark:text-gray-400">
+									Experience the future of job hunting with our cutting-edge AI technology and comprehensive career platform.
+								</p>
+							</div>
+							<div className="grid gap-4">
+								{features.map((feature, i) => (
+									<div key={i} className="flex items-center gap-4">
+										<CheckCircle className="h-5 w-5 text-primary" />
+										<p className="text-gray-600 dark:text-gray-300">{feature}</p>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
-					<Suspense fallback={<SignInFallback />}>
-						<SignInButton />
-					</Suspense>
-				</div>
+				</section>
 			</main>
 		</div>
 	);
